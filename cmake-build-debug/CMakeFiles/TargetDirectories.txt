@@ -1,0 +1,3 @@
+/Users/yussef/CLionProjects/NetTrafficObserver/cmake-build-debug/CMakeFiles/NetTrafficObserver.dir
+/Users/yussef/CLionProjects/NetTrafficObserver/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/yussef/CLionProjects/NetTrafficObserver/cmake-build-debug/CMakeFiles/rebuild_cache.dir
