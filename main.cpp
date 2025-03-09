@@ -1,21 +1,23 @@
-#include <iostream>
 #include <pcap.h>
+#include <iostream>
+#include <string>
+
+#include "PacketSniffer.h"
+#include "DeviceSelector.h"
 
 int main() {
-    char errbuf[PCAP_ERRBUF_SIZE];
-    pcap_t *handle;
+    // Erstelle ein DeviceSelector-Objekt
+    DeviceSelector deviceSelector;
 
-    // Öffnen des Netzwerk-Interfaces (hier 'en0' für das erste Netzwerkinterface)
-    handle = pcap_open_live("en0", BUFSIZ, 1, 1000, errbuf);
+    // Zeige die Geräteauswahl an
+    deviceSelector.showTopDevices();
 
-    if (handle == NULL) {
-        std::cerr << "Error opening device: " << errbuf << std::endl;
-        return 1;
-    }
+    // Hole die Gerätewahl des Benutzers
+    std::string selectedDevice = deviceSelector.getDeviceChoice();
 
-    std::cout << "Network interface opened successfully!" << std::endl;
+    // Erstelle ein PacketSniffer-Objekt und starte das Sniffen mit dem gewählten Gerät
+    PacketSniffer sniffer;
+    sniffer.startSniffing(selectedDevice);  // Gerät an den Sniffer übergeben
 
-    // Schließen der Verbindung
-    pcap_close(handle);
     return 0;
 }
